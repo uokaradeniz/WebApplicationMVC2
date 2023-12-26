@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace WebApplicationMVC2.Controllers
 {
@@ -17,31 +20,53 @@ namespace WebApplicationMVC2.Controllers
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
         public ActionResult Dashboard()
         {
             return View();
         }
-        public ActionResult Dashboard1()
+
+        public ActionResult SendMail()
         {
             return View();
         }
-        public ActionResult mailbox()
+
+        [HttpPost]
+        public ActionResult SendMail(string to, string subject, string message, HttpPostedFileBase attachment)
         {
+            try
+            {
+                using (MailMessage mail = new MailMessage())
+                {
+                    mail.From = new MailAddress("uguroguzhan1398@gmail.com");
+                    mail.To.Add(to);
+                    mail.Subject = subject;
+                    mail.Body = message;
+                    mail.IsBodyHtml = true;
+
+                    if (attachment != null && attachment.ContentLength > 0)
+                    {
+                        string fileName = System.IO.Path.GetFileName(attachment.FileName);
+                        mail.Attachments.Add(new Attachment(attachment.InputStream, fileName));
+                    }
+
+                    using (SmtpClient smtp = new SmtpClient())
+                    {
+                        smtp.Host = "smtp.gmail.com";
+                        smtp.Port = 587;
+                        smtp.Credentials = new NetworkCredential("uguroguzhan1398@gmail.com", "uavu lfvx hchx ijdk");
+                        smtp.EnableSsl = true;
+                        smtp.Send(mail);
+                    }
+                }
+
+                ViewBag.Message = "Successfully sent mail!";
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = $"Error: {ex.Message}";
+            }
+
             return View();
         }
-    
-}
+    }
 }

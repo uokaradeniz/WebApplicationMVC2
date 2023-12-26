@@ -23,20 +23,14 @@
             <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
                 <i class="fas fa-user-secret me-2"></i>Phishing Test
             </div>
-            <div class="list-group list-group-flush my-3">
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text active">
-                    <i class="fas fa-tachometer-alt me-2"></i>Dashboard
-                </a>
-
-                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold">
-                    <i class="fas fa-comment-dots me-2"></i>Send Fake Email
-                </a>
-
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-transparent text-danger fw-bold">
-                    <i class="fas fa-power-off me-2"></i>Logout
-                </a>
-            </div>
+            <ul>
+                <li class="list-group-item list-group-item-action bg-transparent second-text active">
+                    <i class="fas fa-tachometer-alt me-2"></i>@Html.ActionLink("Dashboard","Dashboard","Home")
+                </li>
+                <li class="list-group-item list-group-item-action bg-transparent second-text active">
+                    <i class="fas fa-comment-dots me-2"></i>@Html.ActionLink("Send Fake Mail", "SendMail", "Home")
+                </li>
+            </ul>
         </div>
         <!-- /#sidebar-wrapper -->
         <!-- Page Content -->
