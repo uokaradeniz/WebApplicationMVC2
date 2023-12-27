@@ -27,21 +27,19 @@ namespace WebApplicationMVC2.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Eğer aynı e-posta adresine sahip bir kullanıcı varsa güncelle
-                var existingUser = _context.Recipients.FirstOrDefault(r => r.Email == recipientModel.Email);
+                var existingUser = _context.Recipients.FirstOrDefault(r => r.Id == recipientModel.Id);
                 if (existingUser != null)
                 {
                     existingUser.TotalClicks++;
                     existingUser.EnterDate = DateTime.Now;
                     _context.SaveChanges();
-                    return RedirectToAction("SendMail", "Home"); // veya başka bir sayfaya yönlendirme
+                    return RedirectToAction("SendMail", "Home"); 
                 }
 
-                // Aynı e-posta adresine sahip kullanıcı yoksa yeni kullanıcı ekle
                 recipientModel.EnterDate = DateTime.Now;
                 _context.Recipients.Add(recipientModel);
                 _context.SaveChanges();
-                return RedirectToAction("SendMail", "Home"); // veya başka bir sayfaya yönlendirme
+                return RedirectToAction("SendMail", "Home");
             }
 
             return View(recipientModel);
