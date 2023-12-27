@@ -1,5 +1,8 @@
-﻿@{
+﻿@model WebApplicationMVC2.Models.DropDownViewModel
+
+@{
     Layout = null;
+    ViewData["Title"] = "Send Mail Page";
 }
 
 <!DOCTYPE html>
@@ -88,15 +91,56 @@
                             <div class="row mb-3">
                                 <label for="subject" class="h2 col-sm-2 col-form-label">Subject:</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="subject" name="subject" required>
+                                    @Html.TextBoxFor(model => model.SelectedItemId, new { @id = "subject" , style="width:300px;" ,@cols=80 })
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="message" class="h2 col-sm-2 col-form-label">Message:</label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control" id="message" name="message" rows="8" required></textarea>
+                                    @Html.TextAreaFor(model => model.SelectedItemId, new { @id = "message", @rows = 8, @cols = 80 })
                                 </div>
                             </div>
+                            <div class="row mb-3">
+                                <label for="message" class="h2 col-sm-2 col-form-label">Message:</label>
+                                <div class="col-sm-10">
+                                    <label class="h2 col-sm-2 col-form-label">Choose a Template:</label>
+                                    @Html.DropDownListFor(model => model.SelectedItemId, Model.templates, "None", new { @id = "dropdownList" })
+                                </div>
+                            </div>
+
+                            <script>
+                                // Dropdown değişikliği algılandığında çağrılacak JavaScript fonksiyonu
+                                document.getElementById('dropdownList').addEventListener('change', function () {
+                                    if (document.getElementById('dropdownList').selectedIndex != 0) {
+                                        var selectedValue = document.getElementById('dropdownList').value;
+                                        document.getElementById('message').value = selectedValue;
+                                    }
+                                    else {
+                                        var selectedValue = ""
+                                        document.getElementById('message').value = selectedValue;
+                                    }
+
+                                    switch (document.getElementById('dropdownList').selectedIndex) {
+                                        case 0:
+                                            document.getElementById('subject').value = "";
+                                            break;
+                                        case 1:
+                                            document.getElementById('subject').value = "Amazon Order Details";
+                                            break;
+                                        case 2:
+                                            document.getElementById('subject').value = "Amazon Prime Campaign";
+                                            break;
+                                        case 3:
+                                            document.getElementById('subject').value = "Twitter Social";
+                                            break;
+                                        case 4:
+                                            document.getElementById('subject').value = "Instagram Account Security Alert";
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                });
+                            </script>
 
                             <div class="row mb-3">
                                 <label for="attachment">Attachment:</label>

