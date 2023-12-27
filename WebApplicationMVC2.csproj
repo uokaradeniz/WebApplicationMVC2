@@ -129,46 +129,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\AmazonLoginsController.cs" />
-    <Compile Include="Controllers\AmazonPaymentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InstagramLoginsController.cs" />
-    <Compile Include="Controllers\TwitterLoginsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Admin.cs">
-      <DependentUpon>PhishingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AmazonLogin.cs">
-      <DependentUpon>PhishingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AmazonPayment.cs">
-      <DependentUpon>PhishingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\InstagramLogin.cs">
-      <DependentUpon>PhishingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PhishingModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PhishingModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PhishingModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PhishingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PhishingModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PhishingModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Receiver.cs">
-      <DependentUpon>PhishingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TwitterLogin.cs">
-      <DependentUpon>PhishingModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -197,29 +160,12 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\PhishingModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PhishingModel.edmx</DependentUpon>
-      <LastGenOutput>PhishingModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\PhishingModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PhishingModel.edmx</DependentUpon>
-      <LastGenOutput>PhishingModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\PhishingModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PhishingModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\PhishingModel.edmx.diagram">
-      <DependentUpon>PhishingModel.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -250,29 +196,10 @@
     <Content Include="Views\Instagram\Instagram.cshtml" />
     <Content Include="Views\AmazonPayment\AmazonPayment.cshtml" />
     <Content Include="Views\AmazonLogin\AmazonLogin.cshtml" />
-    <Content Include="Views\TwitterLogins\Create.cshtml" />
-    <Content Include="Views\TwitterLogins\Delete.cshtml" />
-    <Content Include="Views\TwitterLogins\Details.cshtml" />
-    <Content Include="Views\TwitterLogins\Edit.cshtml" />
-    <Content Include="Views\TwitterLogins\Index.cshtml" />
-    <Content Include="Views\InstagramLogins\Create.cshtml" />
-    <Content Include="Views\InstagramLogins\Delete.cshtml" />
-    <Content Include="Views\InstagramLogins\Details.cshtml" />
-    <Content Include="Views\InstagramLogins\Edit.cshtml" />
-    <Content Include="Views\InstagramLogins\Index.cshtml" />
-    <Content Include="Views\AmazonLogins\Create.cshtml" />
-    <Content Include="Views\AmazonLogins\Delete.cshtml" />
-    <Content Include="Views\AmazonLogins\Details.cshtml" />
-    <Content Include="Views\AmazonLogins\Edit.cshtml" />
-    <Content Include="Views\AmazonLogins\Index.cshtml" />
-    <Content Include="Views\AmazonPayments\Create.cshtml" />
-    <Content Include="Views\AmazonPayments\Delete.cshtml" />
-    <Content Include="Views\AmazonPayments\Details.cshtml" />
-    <Content Include="Views\AmazonPayments\Edit.cshtml" />
-    <Content Include="Views\AmazonPayments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
     <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
