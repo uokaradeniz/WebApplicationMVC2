@@ -131,12 +131,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AmazonLoginController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InstagramController.cs" />
+    <Compile Include="Controllers\TwitterController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DropDownViewModel.cs" />
-    <Compile Include="Models\PhishingDbContext.cs" />
     <Compile Include="Models\Recipient.cs" />
+    <Compile Include="Models\RecipientModel.cs" />
+    <Compile Include="Models\RecipientPayment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -159,8 +162,7 @@
     <Content Include="Content\css\mailbox.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\style1.css" />
-    <Content Include="Content\img\1.jpeg" />
-    <Content Include="Content\img\3.jpeg" />
+    <Content Include="Content\img\amazon_logo.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -203,7 +205,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
