@@ -13,11 +13,11 @@ namespace WebApplicationMVC2.Models
 
         [Required]
         [StringLength(50)]
-        public string Email { get; set; }
+        public string FullName { get; set; }
 
         [Required]
         [StringLength(50)]
-        public string Password { get; set; }
+        public string Email { get; set; }
 
         public DateTime EnterDate { get; set; }
 
