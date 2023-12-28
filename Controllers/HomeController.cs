@@ -77,8 +77,13 @@ namespace WebApplicationMVC2.Controllers
             {
                 ViewBag.Error = $"Error: {ex.Message}";
             }
+            DropDownViewModel model = new DropDownViewModel
+            {
+                templates = GetDropdownItems(),
+                SelectedItemId = 1
+            };
 
-            return View();
+            return View(model);
         }
     }
 }

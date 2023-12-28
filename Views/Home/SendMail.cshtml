@@ -91,13 +91,13 @@
                             <div class="row mb-3">
                                 <label for="subject" class="h2 col-sm-2 col-form-label">Subject:</label>
                                 <div class="col-sm-10">
-                                    @Html.TextBoxFor(model => model.SelectedItemId, new { @id = "subject" , style="width:300px;" ,@cols=80 })
+                                    <input type="text" class="form-control" id="subject" name="subject" required>
                                 </div>
                             </div>
                             <div class="row mb-3">
                                 <label for="message" class="h2 col-sm-2 col-form-label">Message:</label>
                                 <div class="col-sm-10">
-                                    @Html.TextAreaFor(model => model.SelectedItemId, new { @id = "message", @rows = 8, @cols = 80 })
+                                    <textarea type="text" class="form-control" id="message" name="message" rows="8" cols="80" required></textarea>
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -107,16 +107,13 @@
                                     @Html.DropDownListFor(model => model.SelectedItemId, Model.templates, "None", new { @id = "dropdownList" })
                                 </div>
                             </div>
-
                             <script>
                                 document.getElementById('dropdownList').addEventListener('change', function () {
                                     if (document.getElementById('dropdownList').selectedIndex != 0) {
                                         var selectedValue = document.getElementById('dropdownList').value;
                                         document.getElementById('message').value = selectedValue;
-                                    }
-                                    else {
-                                        var selectedValue = ""
-                                        document.getElementById('message').value = selectedValue;
+                                    } else {
+                                        document.getElementById('message').value = "";
                                     }
 
                                     switch (document.getElementById('dropdownList').selectedIndex) {
@@ -140,6 +137,7 @@
                                     }
                                 });
                             </script>
+
 
                             <div class="row mb-3">
                                 <label for="attachment">Attachment:</label>

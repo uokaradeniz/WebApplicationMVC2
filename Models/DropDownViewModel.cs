@@ -10,5 +10,10 @@ namespace WebApplicationMVC2.Models
     {
         public int SelectedItemId { get; set; }
         public List<SelectListItem> templates { get; set; }
+
+        public DropDownViewModel()
+        {
+            templates = new List<SelectListItem>();
+        }
     }
 }
