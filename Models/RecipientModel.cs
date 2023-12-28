@@ -11,6 +11,7 @@ namespace WebApplicationMVC2.Models
 
         public virtual DbSet<Recipient> Recipient { get; set; }
         public virtual DbSet<RecipientPayment> RecipientPayment { get; set; }
+        public virtual DbSet<SentMailData> SentMailData { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

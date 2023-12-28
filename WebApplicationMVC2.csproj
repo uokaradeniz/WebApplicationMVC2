@@ -141,6 +141,7 @@
     <Compile Include="Models\Recipient.cs" />
     <Compile Include="Models\RecipientModel.cs" />
     <Compile Include="Models\RecipientPayment.cs" />
+    <Compile Include="Models\SentMailData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

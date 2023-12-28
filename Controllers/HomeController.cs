@@ -7,14 +7,66 @@ using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using WebApplicationMVC2.Models;
 using System.Web.UI;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace WebApplicationMVC2.Controllers
 {
     public class HomeController : Controller
     {
+        RecipientModel context;
+
+        public HomeController()
+        {
+            context = new RecipientModel();
+        }
+
         public ActionResult Index()
         {
+            //verileri tablede gösterme
+            var loginRecipients = context.Recipient.ToList();
+            var paymentRecipients = context.RecipientPayment.ToList();
+
+            ViewBag.LoginRecipients = loginRecipients;
+            ViewBag.PaymentRecipients = paymentRecipients;
+
+
+            //databasedeki verilerin yüzdelik dilimi
+            var loginRecipientCount = context.Recipient.Count();
+            var paymentRecipientCount = context.RecipientPayment.Count();
+
+            double totalCount = loginRecipientCount + paymentRecipientCount;
+
+            double loginRecipientPercentage = (loginRecipientCount / totalCount) * 100;
+            double paymentRecipientPercentage = (paymentRecipientCount / totalCount) * 100;
+
+            ViewBag.LoginPercentage = loginRecipientPercentage;
+            ViewBag.PaymentPercentage = paymentRecipientPercentage;
+
+            var sentMailData = context.SentMailData.OrderBy(p => p.ID).FirstOrDefault();
+
+            ViewBag.TotalMailCount = sentMailData.TotalEmailsSent;
+
             return View();
+        }
+
+        public async Task<ActionResult> IncrementSentMailCount()
+        {
+            // İlk kaydı al
+            var sentMailData = await context.SentMailData.OrderBy(p => p.ID).FirstOrDefaultAsync();
+
+            if (sentMailData!= null)
+            {
+                // Değeri 1 arttır
+                sentMailData.TotalEmailsSent++;
+
+                // Değişiklikleri kaydet
+                await context.SaveChangesAsync();
+            }
+
+
+            return RedirectToAction("Index"); // İsteğe bağlı olarak başka bir sayfaya yönlendirilebilir.
         }
 
         public ActionResult SendMail()
@@ -43,7 +95,7 @@ namespace WebApplicationMVC2.Controllers
         }
 
         [HttpPost]
-        public ActionResult SendMail(string to, string subject, string message, HttpPostedFileBase attachment)
+        public async Task<ActionResult> SendMail(string to, string subject, string message, HttpPostedFileBase attachment)
         {
             try
             {
@@ -68,6 +120,7 @@ namespace WebApplicationMVC2.Controllers
                         smtp.Credentials = new NetworkCredential("uguroguzhan1398@gmail.com", "uavu lfvx hchx ijdk");
                         smtp.EnableSsl = true;
                         smtp.Send(mail);
+                        await IncrementSentMailCount();
                     }
                 }
 
