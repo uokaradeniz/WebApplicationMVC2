@@ -32,7 +32,7 @@ namespace WebApplicationMVC2.Controllers
                 _context.SaveChanges();
 
                 // İstediğiniz sayfaya yönlendirme yapabilirsiniz
-                return RedirectToAction("SendMail", "Home");
+                return RedirectToAction("Index", "Home");
             }
 
             var recipient = new Recipient
@@ -42,12 +42,14 @@ namespace WebApplicationMVC2.Controllers
                 TotalClicks = 1
             };
 
+            var sentMailData = _context.SentMailData.OrderBy(p => p.ID).FirstOrDefault();
+            sentMailData.InstagramInputs++;
 
             recipient.EnterDate = DateTime.Now;
             _context.Recipient.Add(recipient);
             _context.SaveChanges();
 
-            return RedirectToAction("SendMail", "Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

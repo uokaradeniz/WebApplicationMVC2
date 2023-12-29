@@ -37,66 +37,79 @@
 
                     <div class="col">
 
-                        <h3 class="title">billing address</h3>
+                        <h3 class="title">Billing Address</h3>
 
                         <div class="inputBox">
-                            <span>full name :</span>
+                            <span>Full Name:</span>
                             <input name="fullname" type="text" placeholder="">
                         </div>
                         <div class="inputBox">
-                            <span>email :</span>
+                            <span>Email:</span>
                             <input name="email" type="email" placeholder="">
                         </div>
                         <div class="inputBox">
-                            <span>address :</span>
+                            <span>Address:</span>
                             <input name="address" type="text" placeholder="">
                         </div>
                         <div class="inputBox">
-                            <span>city :</span>
+                            <span>City:</span>
                             <input name="city" type="text" placeholder="">
                         </div>
 
                         <div class="flex">
                             <div class="inputBox">
-                                <span>state :</span>
+                                <span>State:</span>
                                 <input name="state" type="text" placeholder="">
                             </div>
                             <div class="inputBox">
-                                <span>zip code :</span>
+                                <span>Zip Code:</span>
                                 <input name="zipcode" type="text" placeholder="">
                             </div>
                         </div>
 
                     </div>
 
+                    <script>
+                        function formatCreditCardNumber(input) {
+                            // Sadece sayıları al
+                            var inputValue = input.value.replace(/\D/g, '');
+
+                            // 4 haneli bloklara bölecek şekilde formatla
+                            var formattedValue = inputValue.replace(/(\d{4})(\d{4})(\d{4})(\d{4})/, '$1 $2 $3 $4');
+
+                            // Formatlı değeri TextBox'a set et
+                            input.value = formattedValue.trim();
+                        }
+                    </script>
+
                     <div class="col">
 
-                        <h3 class="title">payment</h3>
+                        <h3 class="title">Payment</h3>
 
                         <div class="inputBox">
-                            <span>cards accepted :</span>
+                            <span>Cards Accepted:</span>
                             <img src="~/Content/images/card_img.png" alt="">
                         </div>
                         <div class="inputBox">
-                            <span>name on card :</span>
+                            <span>Name on Card: </span>
                             <input name="nameoncard" type="text" placeholder="">
                         </div>
                         <div class="inputBox">
-                            <span>credit card number :</span>
-                            <input name="creditcardnumber" type="number" placeholder="">
+                            <span>Credit Card Number:</span>
+                            <input maxlength="16" name="creditcardnumber" type="text" placeholder="">
                         </div>
                         <div class="inputBox">
-                            <span> month :</span>
+                            <span> Month:</span>
                             <input name="month" type="text" placeholder="">
                         </div>
 
                         <div class="flex">
                             <div class="inputBox">
-                                <span> year :</span>
+                                <span> Year:</span>
                                 <input name="year" type="number" placeholder="">
                             </div>
                             <div class="inputBox">
-                                <span>CVV :</span>
+                                <span>CVV:</span>
                                 <input name="cvv" type="text" placeholder="">
                             </div>
                         </div>

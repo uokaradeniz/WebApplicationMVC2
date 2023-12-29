@@ -22,15 +22,32 @@
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <div class="bg-white" id="sidebar-wrapper">
-            <div class="sidebar-heading text-center py-5 primary-text fs-4 fw-bold text-uppercase border-bottom m-2">
+            <div class="sidebar-heading text-center py-5 primary-text fs-5 fw-bold text-uppercase border-bottom">
                 <i class="fas fa-user-secret me-2"></i>Phishing Test
             </div>
-            <ul>
+            <ul class="border-top">
                 <li class="list-group-item list-group-item-action bg-transparent second-text active">
                     <i class="fas fa-tachometer-alt me-2"></i>@Html.ActionLink("Dashboard", "Index", "Home")
                 </li>
                 <li class="list-group-item list-group-item-action bg-transparent second-text active">
-                    <i class="fas fa-comment-dots me-1"></i>@Html.ActionLink("Send Fake Mail", "SendMail", "Home")
+                    <i class="fas fa-mail-bulk me-2"></i>@Html.ActionLink("Send Bait Mail", "SendMail", "Home")
+                </li>
+            </ul>
+            <div class="sidebar-heading text-center py-5 primary-text fs-7 fw-bold text-uppercase border-bottom border-top">
+                <i class="far fa-clone me-2"></i>Clone Pages
+            </div>
+            <ul class="border-bottom">
+                <li class="list-group-item list-group-item-action bg-transparent second-text active">
+                    <i class="fab fa-amazon me-2"></i>@Html.ActionLink("Amazon Login", "AmazonLogin", "AmazonLogin")
+                </li>
+                <li class="list-group-item list-group-item-action bg-transparent second-text active">
+                    <i class="fab fa-amazon-pay me-2"></i>@Html.ActionLink("Amazon Payment", "AmazonPayment", "AmazonPayment")
+                </li>
+                <li class="list-group-item list-group-item-action bg-transparent second-text active">
+                    <i class="fab fa-instagram me-2"></i>@Html.ActionLink("Instagram Login", "Instagram", "Instagram")
+                </li>
+                <li class="list-group-item list-group-item-action bg-transparent second-text active">
+                    <i class="fab fa-twitter me-2"></i>@Html.ActionLink("Twitter Login", "Twitter", "Twitter")
                 </li>
             </ul>
         </div>

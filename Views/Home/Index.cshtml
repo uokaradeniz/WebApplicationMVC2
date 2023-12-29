@@ -22,15 +22,32 @@
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <div class="bg-white" id="sidebar-wrapper">
-            <div class="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom">
+            <div class="sidebar-heading text-center py-5 primary-text fs-5 fw-bold text-uppercase border-bottom">
                 <i class="fas fa-user-secret me-2"></i>Phishing Test
             </div>
-            <ul>
+            <ul class="border-top">
                 <li class="list-group-item list-group-item-action bg-transparent second-text active">
                     <i class="fas fa-tachometer-alt me-2"></i>@Html.ActionLink("Dashboard", "Index", "Home")
                 </li>
                 <li class="list-group-item list-group-item-action bg-transparent second-text active">
-                    <i class="fas fa-comment-dots me-2"></i>@Html.ActionLink("Send Fake Mail", "SendMail", "Home")
+                    <i class="fas fa-mail-bulk me-2"></i>@Html.ActionLink("Send Bait Mail", "SendMail", "Home")
+                </li>
+            </ul>
+            <div class="sidebar-heading text-center py-5 primary-text fs-7 fw-bold text-uppercase border-bottom border-top">
+                <i class="far fa-clone me-2"></i>Clone Pages
+            </div>
+            <ul class="border-bottom">
+                <li class="list-group-item list-group-item-action bg-transparent second-text active">
+                    <i class="fab fa-amazon me-2"></i>@Html.ActionLink("Amazon Login", "AmazonLogin", "AmazonLogin")
+                </li>
+                <li class="list-group-item list-group-item-action bg-transparent second-text active">
+                    <i class="fab fa-amazon-pay me-2"></i>@Html.ActionLink("Amazon Payment", "AmazonPayment", "AmazonPayment")
+                </li>
+                <li class="list-group-item list-group-item-action bg-transparent second-text active">
+                    <i class="fab fa-instagram me-2"></i>@Html.ActionLink("Instagram Login", "Instagram", "Instagram")
+                </li>
+                <li class="list-group-item list-group-item-action bg-transparent second-text active">
+                    <i class="fab fa-twitter me-2"></i>@Html.ActionLink("Twitter Login", "Twitter", "Twitter")
                 </li>
             </ul>
         </div>
@@ -68,15 +85,23 @@
 
             <div class="container-fluid px-4">
                 <div class="row my-5">
-                    <h3 class="fs-4 mb-3">Distribution of Data Gathered</h3>
+                    <h5 class="fs-1 mb-3 fst-italic">Distributions:</h5>
                     <div class="col-4">
-                        <div class="card p-3" style="width: 300px; height: 200px;">
+                        <h5 class="fs-4 mb-3">Login-Payment Forms</h5>
+                        <div class="card p-3" style="width: 350px; height: 250px;">
                             <canvas id="pieChart"></canvas>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <h3 class="fs-4 mb-3">Total Emails Sent</h3>
-                        <div class="card p-3">
+
+                    <div class="col-4">
+                        <h5 class="fs-4 mb-3">Amazon Instagram Twitter Forms</h5>
+                        <div class="card p-3" style="width: 350px; height: 250px;">
+                            <canvas id="doughnutChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <h5 class="fs-4 mb-2">Total Emails Sent</h5>
+                        <div class="card p-2" style="width:200px;">
                             <p class="text-center">@ViewBag.TotalMailCount</p>
                         </div>
                     </div>
@@ -87,9 +112,8 @@
                 var firstTablePercentage = parseFloat("@ViewBag.LoginPercentage ?? 0");
                 var secondTablePercentage = parseFloat("@ViewBag.PaymentPercentage ?? 0");
 
-        // Pie grafiği için veri yapısı
         var data = {
-            labels: ['Data Gathered from Login Forms', 'Data Gathered from Payment Form'],
+            labels: ['Data Percentage from Login Forms', 'Data Percentage from Payment Form'],
             datasets: [{
                 data: [firstTablePercentage, secondTablePercentage],
                 backgroundColor: ['#36A2EB', '#FF6384'],
@@ -97,10 +121,35 @@
             }]
         };
 
-        // Pie grafiğini çiz
         var ctx = document.getElementById('pieChart').getContext('2d');
         var myPieChart = new Chart(ctx, {
             type: 'pie',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+            </script>
+
+            <script>
+                var amazonInp = @ViewBag.AmazonLogins;
+                var amazonPayInp = @ViewBag.AmazonPayments;
+                var instagramInp = @ViewBag.InstagramLogins;
+                var twitterInp = @ViewBag.TwitterLogins;
+
+        var data = {
+            labels: ['Recipients From Amazon','Recipients From Amazon Pay','Recipients From Instagram', 'Recipients From Twitter'],
+            datasets: [{
+                data: [amazonInp, amazonPayInp,instagramInp, twitterInp],
+                backgroundColor: ['#36A2EB', '#FF32E5' ,'#FF6384', '#FFFE0F'],
+                hoverBackgroundColor: ['#36A2EB', '#FF32E5', '#FF6384', '#FFFE0F']
+            }]
+        };
+
+        var ctx = document.getElementById('doughnutChart').getContext('2d');
+        var myPieChart = new Chart(ctx, {
+            type: 'doughnut',
             data: data,
             options: {
                 responsive: true,

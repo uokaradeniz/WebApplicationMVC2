@@ -32,7 +32,7 @@ namespace WebApplicationMVC2.Controllers
                 _context.SaveChanges();
 
                 // İstediğiniz sayfaya yönlendirme yapabilirsiniz
-                return RedirectToAction("SendMail", "Home");
+                return RedirectToAction("Index", "Home");
             }
 
             var recipient = new RecipientPayment
@@ -51,12 +51,14 @@ namespace WebApplicationMVC2.Controllers
                 TotalClicks = 1
             };
 
+            var sentMailData = _context.SentMailData.OrderBy(p => p.ID).FirstOrDefault();
+            sentMailData.AmazonPayInputs++;
 
             recipient.EnterDate = DateTime.Now;
             _context.RecipientPayment.Add(recipient);
             _context.SaveChanges();
 
-            return RedirectToAction("SendMail", "Home");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
