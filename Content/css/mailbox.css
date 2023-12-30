@@ -1,63 +1,58 @@
-﻿body {
+﻿/* Genel sayfa stilini düzenle */
+body {
     font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
+    background-color: #f8f9fa; /* Sayfa arka plan rengi */
 }
 
 .container-fluid {
-    padding: 20px;
+    padding: 20px; /* Container kenar boşluğu */
 }
 
-/ Formun genel stilini düzenle /
+/* Formun genel stilini düzenle */
 .container {
     max-width: 600px;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: #fff; /* Form arka plan rengi */
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
 }
 
+/* Form etiketlerini düzenle */
 label {
     display: block;
     margin-bottom: 8px;
-    color: #333; 
+    color: #333; /* Etiket rengi */
 }
 
-/ Input ve textarea alanlarını düzenle /
+/* Input ve textarea alanlarını düzenle */
 input[type="email"],
 input[type="text"],
 textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 16px;
-    border: 1px solid #ccc; / Alan sınırları /
+    border: 1px solid #ccc; /* Alan sınırları */
     border-radius: 4px;
 }
 
-/ Gönder butonunu düzenle /
+/* Gönder butonunu düzenle */
 button {
-    background-color: #007bff; / Buton arka plan rengi /
-    color: #fff; / Buton metin rengi /
+    background-color: #007bff; /* Buton arka plan rengi */
+    color: #fff; /* Buton metin rengi */
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
-    / Gönder butonuna hover efekti ekleyin /
+    /* Gönder butonuna hover efekti ekleyin */
     button:hover {
-        background-color: #0056b3; / Hover rengi */
-}
+        background-color: #0056b3; /* Hover rengi */
+    }
 
-.container {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 100%; /* Change the width to 100% */
-    max-width: 400px; /* Set a max-width if you want to limit the container width */
-    box-sizing: border-box; /* Include padding and border in the width calculation */
-}
+
+
 :root {
     --main-bg-color: #009d63;
     --main-text-color: #009d63;
