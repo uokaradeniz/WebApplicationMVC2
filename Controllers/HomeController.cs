@@ -57,20 +57,14 @@ namespace WebApplicationMVC2.Controllers
 
         public async Task<ActionResult> IncrementSentMailCount()
         {
-            // İlk kaydı al
             var sentMailData = await context.SentMailData.OrderBy(p => p.ID).FirstOrDefaultAsync();
 
-            if (sentMailData!= null)
+            if (sentMailData != null)
             {
-                // Değeri 1 arttır
                 sentMailData.TotalEmailsSent++;
-
-                // Değişiklikleri kaydet
                 await context.SaveChangesAsync();
             }
-
-
-            return RedirectToAction("Index"); // İsteğe bağlı olarak başka bir sayfaya yönlendirilebilir.
+            return RedirectToAction("Index");
         }
 
         public ActionResult SendMail()
@@ -99,32 +93,37 @@ namespace WebApplicationMVC2.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> SendMail(string to, string subject, string message, HttpPostedFileBase attachment)
+        public async Task<ActionResult> SendMail(List<string> recipients, string subject, string message, HttpPostedFileBase attachment)
         {
             try
             {
-                using (MailMessage mail = new MailMessage())
+                foreach (var to in recipients)
                 {
-                    mail.From = new MailAddress("uguroguzhan1398@gmail.com");
-                    mail.To.Add(to);
-                    mail.Subject = subject;
-                    mail.Body = message;
-                    mail.IsBodyHtml = true;
 
-                    if (attachment != null && attachment.ContentLength > 0)
-                    {
-                        string fileName = System.IO.Path.GetFileName(attachment.FileName);
-                        mail.Attachments.Add(new Attachment(attachment.InputStream, fileName));
-                    }
 
-                    using (SmtpClient smtp = new SmtpClient())
+                    using (MailMessage mail = new MailMessage())
                     {
-                        smtp.Host = "smtp.gmail.com";
-                        smtp.Port = 587;
-                        smtp.Credentials = new NetworkCredential("uguroguzhan1398@gmail.com", "uavu lfvx hchx ijdk");
-                        smtp.EnableSsl = true;
-                        smtp.Send(mail);
-                        await IncrementSentMailCount();
+                        mail.From = new MailAddress("uguroguzhan1398@gmail.com");
+                        mail.To.Add(to);
+                        mail.Subject = subject;
+                        mail.Body = message;
+                        mail.IsBodyHtml = true;
+
+                        if (attachment != null && attachment.ContentLength > 0)
+                        {
+                            string fileName = System.IO.Path.GetFileName(attachment.FileName);
+                            mail.Attachments.Add(new Attachment(attachment.InputStream, fileName));
+                        }
+
+                        using (SmtpClient smtp = new SmtpClient())
+                        {
+                            smtp.Host = "smtp.gmail.com";
+                            smtp.Port = 587;
+                            smtp.Credentials = new NetworkCredential("uguroguzhan1398@gmail.com", "uavu lfvx hchx ijdk");
+                            smtp.EnableSsl = true;
+                            smtp.Send(mail);
+                            await IncrementSentMailCount();
+                        }
                     }
                 }
 

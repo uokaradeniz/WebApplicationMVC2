@@ -100,14 +100,22 @@
                             <div class="alert alert-danger">@ViewBag.Error</div>
                         }
 
-                        @using (Html.BeginForm("SendMail", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        @using (Html.BeginForm("SendMail", "Home", FormMethod.Post, new { id = "sendMailForm", enctype = "multipart/form-data" }))
                         {
-                            <div class="row mb-3">
-                                <label for="to" class="h2 col-sm-2 col-form-label">To:</label>
-                                <div class="col-sm-10">
-                                    <input type="email" class="form-control" id="to" name="to" required>
+                            <div id="recipientsContainer">
+                                <div class="row mb-3 d-block">
+                                    <div class="col-sm-2">
+                                        <button type="button" class="fas fa-plus btn btn-success" onclick="addRecipient()">Add New Recipient</button>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="to" class="h2 col-sm-2 col-form-label">To:</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" name="Recipients[0]" id="to" required>
+                                    </div>
                                 </div>
                             </div>
+
                             <div class="row mb-3">
                                 <label for="subject" class="h2 col-sm-2 col-form-label">Subject:</label>
                                 <div class="col-sm-10">
@@ -127,6 +135,30 @@
                                     @Html.DropDownListFor(model => model.SelectedItemId, Model.templates, "None", new { @id = "dropdownList" })
                                 </div>
                             </div>
+
+                            <script>
+                                var recipientCount = 1;
+
+                                function addRecipient() {
+                                    var container = document.getElementById('recipientsContainer');
+                                    var newRow = document.createElement('div');
+                                    newRow.className = 'row mb-3';
+                                    newRow.innerHTML = `
+                                                                                                                                                                                                                                            <label class="h2 col-sm-2 col-form-label">To:</label>
+                                                                                                                                                                                                                                            <div class="col-sm-10">
+                                                                                                                                                                                                                                                <input type="email" class="form-control" name="recipients[${recipientCount}]" required>
+                                                                                                                                                                                                                                            </div>
+                                                                                                                                                                                                                                        `;
+                                    container.appendChild(newRow);
+                                    recipientCount++;
+                                }
+
+                                function sendMails() {
+                                    // Burada tüm mailleri gönderme işlemini gerçekleştirin
+                                    document.getElementById('sendMailForm').submit();
+                                }
+                            </script>
+
                             <script>
                                 document.getElementById('dropdownList').addEventListener('change', function () {
                                     if (document.getElementById('dropdownList').selectedIndex != 0) {
@@ -168,7 +200,7 @@
 
                             <div class="row">
                                 <div class="col-sm-10 offset-sm-2">
-                                    <button class="btn btn-primary w-25" type="submit">Send</button>
+                                    <button class="btn btn-primary w-25" type="button" onclick="sendMails()">Send</button>
                                 </div>
                             </div>
                         }
