@@ -29,6 +29,7 @@ namespace WebApplicationMVC2.Controllers
             {
                 // Kullanıcı zaten var, sadece TotalClicks değerini 1 arttır
                 existingUser.TotalClicks += 1;
+                existingUser.EnterDate = DateTime.Now;
                 _context.SaveChanges();
 
                 // İstediğiniz sayfaya yönlendirme yapabilirsiniz
